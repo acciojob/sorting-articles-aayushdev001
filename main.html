@@ -1,16 +1,81 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8" />
+<title>Sort Without Articles</title>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+<style>
+body {
+margin: 0;
+font-family: sans-serif;
+background: url('https://source.unsplash.com/nDqA4d5NL0k/2000x2000');
+background-size: cover;
+display: flex;
+align-items: center;
+min-height: 100vh;
+}
+
+#band {
+list-style: inside square;
+font-size: 20px;
+background: white;
+width: 500px;
+margin: auto;
+padding: 0;
+box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+#band li {
+border-bottom: 1px solid #efefef;
+padding: 20px;
+}
+
+#band li:last-child {
+border-bottom: 0;
+}
+
+a {
+color: #ffc600;
+text-decoration: none;
+}
+</style>
+
+<ul id='band'></ul>
+
+<script type="text/javascript" src="./script.js">
+//your code here
+let bandNames = ["The Beatles", "Rolling Stones", "Led Zeppelin", "Pink Floyd", "The Who", "The Doors"];
+
+// Function to remove articles from band names
+function removeArticle(bandName) {
+// List of articles to remove
+let articles = ["a", "an", "the"];
+// Split band name into words
+let words = bandName.split(" ");
+// Check if first word is an article
+if (articles.includes(words[0].toLowerCase())) {
+// Remove the article
+words.shift();
+}
+// Join the remaining words and return the modified band name
+return words.join(" ");
+}
+
+// Sort the band names in lexicographic order excluding articles
+bandNames.sort(function(a, b) {
+return removeArticle(a).localeCompare(removeArticle(b));
+});
+
+// Get the ul element with id 'band'
+let ulElement = document.getElementById("band");
+
+// Loop through the sorted band names and add them as li elements to the ul element
+for (let i = 0; i < bandNames.length; i++) {
+let liElement = document.createElement("li");
+liElement.textContent = bandNames[i];
+ulElement.appendChild(liElement);
+}
 </script>
-
 </body>
-
-</html>
+</html
